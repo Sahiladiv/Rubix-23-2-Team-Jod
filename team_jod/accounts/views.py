@@ -13,7 +13,6 @@ def register(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         email = request.POST.get('email')
-        phone = request.POST.get('phone')
         user_acc = User.objects.create_user(
                 first_name = Firstname,
                 last_name = Surname,
@@ -23,17 +22,16 @@ def register(request):
         )
         user_acc.save()
 
-        request.session['uid']=str(user_acc.id)
+        # request.session['uid']=str(user_acc.id)
 
-        user_account = UserAccount.objects.create(firstname = Firstname, 
-                                                    surname = Surname, 
-                                                    username = username, 
-                                                    email = email, 
-                                                    phone = phone)
+        # user_account = UserAccount.objects.create(firstname = Firstname, 
+        #                                             surname = Surname, 
+        #                                             username = username, 
+        #                                             email = email)
                                                     
-        user_account.save()
+        # user_account.save()
         user = authenticate(username=username, password=password)
-        login(request, user)
+        
 
         return redirect ('/')
     
@@ -48,11 +46,15 @@ def login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        user = auth.authenticate(username = username, password = password)
-        uid = user.id
-        request.session['uid'] = str(uid)
+        user = authenticate(username = username, password = password)
+
+
         if user is not None:
+            uid = user.id
+            print(uid)
+            request.session['uid'] = str(uid)
             auth.login(request,user)
+
 
             return redirect ('/')
         else:
@@ -61,3 +63,8 @@ def login(request):
     else:
 
         return render(request,'login.html')
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect ('/')

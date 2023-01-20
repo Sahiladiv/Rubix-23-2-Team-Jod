@@ -53,6 +53,9 @@
     </div>
     <!--====== PRELOADER PART ENDS ======-->
 
+
+
+
     <!--====== HEADER PART START ======-->
     <header class="header-area">
       <div class="navbar-area">
@@ -83,22 +86,43 @@
                 >
                   <ul id="nav" class="navbar-nav ms-auto">
                     <li class="nav-item">
-                      <a class="page-scroll active" href="/">Home</a>
+                      <a href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/blogs/write">Write</a>
                     </li>
 
-                    <li class="nav-item">
-                      <a class="page-scroll" href="/blogs/write">Write</a>
-                    </li>
                     <li class="nav-item">
                       <a href="/blogs">Blogs</a>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                      <a href="/blogs">{{user}}</a>
+                    </li>
+
+                    {% else %}
                     <li class="nav-item">
                       <a href="/accounts/signin">Sign In</a>
                     </li>
+                    {% endif %}
+
                   </ul>
                 </div>
                 <!-- navbar collapse -->
+                {% if user.is_authenticated %}
 
+                <div class="navbar-btn d-none d-sm-inline-block">
+                  <a
+                    class="main-btn"
+                    data-scroll-nav="0"
+                    href="/accounts/logout"
+                    rel="nofollow"
+                  >
+                    Logout
+                  </a>
+                </div>
+
+                {% else %}
                 <div class="navbar-btn d-none d-sm-inline-block">
                   <a
                     class="main-btn"
@@ -109,6 +133,7 @@
                     Register
                   </a>
                 </div>
+                {% endif %}
               </nav>
               <!-- navbar -->
             </div>
@@ -266,23 +291,7 @@
             <!-- row -->
           </div>
           <!-- footer widget -->
-          <div class="footer-copyright">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="copyright d-sm-flex justify-content-between">
-                  <div class="copyright-content">
-                    <p class="text">
-                      Designed and Developed by
-                      <a href="https://uideck.com" rel="nofollow">UIdeck</a>
-                    </p>
-                  </div>
-                  <!-- copyright content -->
-                </div>
-                <!-- copyright -->
-              </div>
-            </div>
-            <!-- row -->
-          </div>
+
           <!-- footer copyright -->
         </div>
         <!-- container -->

@@ -48,23 +48,11 @@
               data-wow-duration="1s"
               data-wow-delay="0.2s"
             >
-              <div class="services-icon">
-                <img
-                  class="shape"
-                  src="{% static 'images/services/services-shape.svg' %}"
-                  alt="shape"
-                />
-                <img
-                  class="shape-1"
-                  src="{% static 'images/services/services-shape-1.svg' %}"
-                  alt="shape"
-                />
-                <i class="lni lni-baloon"> </i>
-              </div>
+
               <div class="services-content mt-30">
                 <h4 class="services-title">
 
-                  <a href="blog_post/{{i.id}}">{{i.blog_title}}</a>
+                  <a href="blog_post?id={{i.id}}">{{i.blog_title}}</a>
                 </h4>
 
               </div>
